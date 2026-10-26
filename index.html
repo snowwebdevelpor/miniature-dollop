@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f7d6ea">
+<title>Our Little Chat</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main id="app">
+
+  <section id="auth" class="screen">
+    <div class="card">
+      <h1>Our Little Chat <span aria-hidden="true">🌸</span></h1>
+      <p class="muted">Invite-only. Use the email you were invited with.</p>
+      <label>Email <input id="email" type="email" autocomplete="email" inputmode="email"></label>
+      <label>Password <input id="password" type="password" autocomplete="current-password" minlength="8"></label>
+      <button id="btn-login" class="primary">Sign in</button>
+      <button id="btn-signup" class="ghost">Create my account (first time)</button>
+      <p id="auth-msg" class="msg" role="status"></p>
+    </div>
+  </section>
+
+  <section id="home" class="screen hidden">
+    <header class="bar">
+      <strong id="me-name">me</strong>
+      <button id="btn-logout" class="ghost small">Sign out</button>
+    </header>
+    <div class="card">
+      <label>Chat with (username)
+        <input id="friend" type="text" autocapitalize="none" autocomplete="off" placeholder="e.g. fairy">
+      </label>
+      <button id="btn-start" class="primary">Open chat</button>
+      <p id="home-msg" class="msg" role="status"></p>
+    </div>
+    <p class="muted notice">Messages are protected in transit and at rest, but this app is <b>not end-to-end encrypted</b>.</p>
+  </section>
+
+  <section id="chat" class="screen hidden">
+    <header class="bar">
+      <button id="btn-back" class="ghost small" aria-label="Back">‹</button>
+      <strong id="chat-title">chat</strong>
+      <span></span>
+    </header>
+    <div id="messages" aria-live="polite"></div>
+    <div id="status" class="status hidden" role="status"></div>
+    <footer class="composer">
+      <div id="rec-bar" class="rec hidden">
+        <span class="dot"></span><span id="rec-time">0:00</span>
+        <button id="rec-cancel" class="ghost small">Cancel</button>
+        <button id="rec-send" class="primary small">Send</button>
+      </div>
+      <div id="compose-row" class="row">
+        <label class="icon-btn" title="Photo">📷<input id="photo" type="file" accept="image/*" hidden></label>
+        <button id="btn-once" class="icon-btn" aria-pressed="false" title="View once">👁️</button>
+        <input id="text" type="text" placeholder="Type a message" autocomplete="off" enterkeyhint="send">
+        <button id="btn-mic" class="icon-btn" title="Record voice">🎤</button>
+        <button id="btn-send" class="primary round" aria-label="Send">➤</button>
+      </div>
+    </footer>
+  </section>
+
+  <div id="viewer" class="viewer hidden" role="dialog" aria-modal="true">
+    <p class="muted">View once — closing deletes it forever.</p>
+    <img id="viewer-img" alt="View once photo">
+    <button id="viewer-close" class="primary">Close</button>
+  </div>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script src="config.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
